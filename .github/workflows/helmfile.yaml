@@ -28,13 +28,16 @@ jobs:
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            aksCluster=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksCluster --query value -o tsv) >> $GITHUB_OUTPUT
-            aksResourceGroup=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksResourceGroup --query value -o tsv) >> $GITHUB_OUTPUT
+            aksCluster=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksCluster --query value -o tsv)
+            echo "aksCluster=${aksCluster}" >> $GITHUB_ENV
+
+            aksResourceGroup=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksResourceGroup --query value -o tsv)
+            echo "aksResourceGroup=${aksResourceGroup}" >> $GITHUB_ENV
 
       - uses: azure/aks-set-context@v4
         with:
-          resource-group: steps.login.outputs.aksResourceGroup
-          cluster-name: steps.login.output.saksCluster
+          resource-group: ${{ env.aksResourceGroup }}
+          cluster-name: ${{ env.aksCluster }}
 
       - run: |
           helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
