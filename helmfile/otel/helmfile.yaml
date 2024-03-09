@@ -1,0 +1,17 @@
+---
+repositories:
+  - name: open-telemetry
+    url: https://open-telemetry.github.io/opentelemetry-helm-charts
+
+releases:
+  - name: otel-operator
+    namespace: opentelemetry
+    chart: open-telemetry/opentelemetry-operator
+    values:
+      - ./values.yaml
+    hooks:
+      - events: [postsync]
+        command: kubectl apply -f ./resources
+
+      - events: [postuninstall]
+        command: kubectl delete crd opentelemetrycollectors.opentelemetry.io
