@@ -22,18 +22,19 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Azure CLI script
+      - id: login
+        name: Azure CLI script
         uses: azure/cli@v2
         with:
           azcliversion: 2.30.0
           inlineScript: |
-            aksCluster=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksCluster --query value -o tsv)
-            aksResourceGroup=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksResourceGroup --query value -o tsv)
+            aksCluster=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksCluster --query value -o tsv) >> $GITHUB_OUTPUT
+            aksResourceGroup=$(az keyvault secret show --vault-name AKSKeyVault-CamSac --name aksResourceGroup --query value -o tsv) >> $GITHUB_OUTPUT
 
       - uses: azure/aks-set-context@v4
         with:
-          resource-group: $aksResourceGroup
-          cluster-name: $aksCluster
+          resource-group: steps.login.outputs.aksResourceGroup
+          cluster-name: steps.login.output.saksCluster
 
       - run: |
           helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
