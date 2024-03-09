@@ -1,0 +1,59 @@
+---
+argo-cd:
+  crds:
+    install: false
+
+  dex:
+    enabled: false
+  notifications:
+    enabled: false
+  applicationSet:
+    enabled: false
+
+  configs:
+    repositories:
+      private-repo:
+        url: https://github.com/CamSac/iaac-helm-charts
+
+    # Argo CD sensitive data
+    # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#sensitive-data-and-sso-client-secrets
+    secret:
+      # -- Create the argocd-secret
+      createSecret: true
+      # -- Shared secret for authenticating GitHub webhook events
+      githubSecret: ''
+    credentialTemplates:
+      private-repo:
+        type: git
+        project: default
+        url: https://github.com/CamSac/
+        githubAppID: 856252
+        githubAppInstallationID: '48453951'
+        githubAppPrivateKey: |
+          -----BEGIN RSA PRIVATE KEY-----
+          MIIEpAIBAAKCAQEAvfEjyexYBZ5eBqaSsDCSzvZ3lotZ9g/d3GgOknoWOGDNTEXe
+          AaQoqQKMQbnYBpKznxOizkIog2Xawco2NV1W+O/QCXnVldLFpNQBu5gzCREel8x/
+          2fFpgXYMaN712VCkBtTt4SiT4AE9I2mXhhwJfZUAd6/AhcP4YGFvJxio+vFqct5M
+          3FwBatnHRNPHkj5zTj5f9FJKm4KYNFFPUGT8OvDTLUAtNbik5Mt+jyCD7+lIXB80
+          hUaJGNxdpIOpgGDiYA20x77kr1EuWOBnlRTGq1YMX4tkkn7fgLGEJeMXF8UJCv7a
+          oUoC8st8Wd3Ng0X0qu35dfwsCETgHCKzF28kVQIDAQABAoIBADBkVGLolRBxZbE6
+          FRtQdMbH4nX3cOcQ6cxysmu9MRYSC5wIHOS8JyPQI13HdHNQQvUfcpYsItg/Rfmj
+          hCYabsMjjhQr9y+hsHsrDHn37+C6fNnd3yDusZurMMQzMd24/uFCtIxt4ybqCeKQ
+          z2r6j6xwHttfaqRp5kjf6grC7KJqGDi+usCwZ/ZoiQ8VYGHgcX/GwK8lgVVWk0hZ
+          9z1FNinAx6MeUZmx+FRVVqGhXSdKr8mca21E5laJXMbjilJURPwC2q2MfVYlmatD
+          h/2JK3wnMavAXAzbTPCumlFksK3MPM53OKrecpLnc7MtmCoJOMarTAOY9gBmEVj3
+          54NXaE0CgYEA+B8RjQs3iBVjH7zNNI7UiMbq6PoyjqsWXZ3BjO0tAnKKcyNz2qBB
+          NiLPIeAqvfhf8H31g13XsKfr22758NithFoM3VhDTMwNNvfTS8acaJaWvo1VPPZE
+          3C0T8HUTfKJyd0fkE7u76h+YKTjMr7r8IgLv9Bxqrq5uA4NaX5cCkX8CgYEAw/kk
+          UY60wRsxozK97HT3RbSJWZowKaxhXT1i43h6NCcTk2rteZK6inVMu8IcIzTpz8Kf
+          jJtqUC2bAxY9hH9Ojc8tnbQ2yN0x6G6xlmK2uQqaM/jZE50oD+4MIvwHs89icbUP
+          Wjyb45oWiYCglr4xpaSSdK2G+l0DEWpSiaKxTCsCgYADyD11P/GFwoWzSyZ5oZ+9
+          wgJ8sKuqnxMFNE1p/4eLHQHdRXITqBO2ZotvwcIFCU81FEZ0zS5ng/fFbYij0jm6
+          5cCCc0D7X7Tn3Jk883cY5QrBNthQyJQ+IvXF2ZMFeFh0VwU0A82WgQrJvhLortn/
+          DrpnpzM9HG2S4iKziFLCswKBgQCuWDe3Vv33zfma9smAU46otLR8wm+Wo4T7LmGL
+          fOM7Aoin3bjnL2JFS5W4dDgUGj7oVn0a2ij6q5f8ZwzTk26POoGai3kxuZds8Q2M
+          fMWSWZxWIEz+5hF+GokxloZDsXwjLLE71i/ZjHwAWC6F7S697mtc4gPzOExCchR7
+          3gFdgQKBgQCXuHar3j8hXOwXVIIDCIZx0+h36HoscBG4+v0hJ0QxTRcd4nk2UCST
+          D7jVMhUKrqi0k5Jf1N/Rxij2VOw7fQkrEQhs5RMe9qoZRgp7RyuA8yjoV7btYgPE
+          DYG2Jh5jg37k9gxnSmBtPFgEa7MB0SVelTDFlFAQ7Q/l0ncmLUvMEg==
+          -----END RSA PRIVATE KEY-----
