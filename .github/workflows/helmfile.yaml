@@ -39,6 +39,5 @@ jobs:
           resource-group: ${{ env.aksResourceGroup }}
           cluster-name: ${{ env.aksCluster }}
 
-      - run: |
-          helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
-          helm install opentelemetry-operator open-telemetry/opentelemetry-operator
+      - run: helmfile apply
+        working-directory: ./helmfile/otel

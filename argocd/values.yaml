@@ -1,0 +1,27 @@
+---
+crds:
+  # -- Install and upgrade CRDs
+  install: false
+  keep: false
+
+# Barebones the application functionallity
+# applicationSet:
+#   enabled: true
+dex:
+  enablde: false
+notifications:
+  enabled: false
+redis:
+  enabled: false
+
+configs:
+  repositories:
+    - https://github.com/CamSac/iaac-helm-charts
+
+  # Argo CD sensitive data
+  # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#sensitive-data-and-sso-client-secrets
+  secret:
+    # -- Create the argocd-secret
+    createSecret: true
+    # -- Shared secret for authenticating GitHub webhook events
+    githubSecret: ''
