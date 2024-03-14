@@ -1,0 +1,27 @@
+---
+argo-cd:
+  crds:
+    install: false
+
+  dex:
+    enabled: false
+  notifications:
+    enabled: false
+  applicationSet:
+    enabled: false
+  server:
+    extraArgs:
+      - --insecure
+
+  configs:
+    repositories:
+      private-repo:
+        url: https://github.com/CamSac/iaac-helm-charts
+
+    # Argo CD sensitive data
+    # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/#sensitive-data-and-sso-client-secrets
+    secret:
+      # -- Create the argocd-secret
+      createSecret: true
+      # -- Shared secret for authenticating GitHub webhook events
+      githubSecret: ''
