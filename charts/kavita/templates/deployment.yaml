@@ -21,12 +21,12 @@ spec:
             - containerPort: 5000
           volumeMounts:
             - name: manga
-              mountPath: kavita/manga
+              mountPath: /manga
             - name: config
               mountPath: /kavita/config
           env:
             - name: TZ
-              value: EST
+              value: America/New_York
       restartPolicy: Always
       volumes:
         - name: manga
