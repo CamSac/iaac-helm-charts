@@ -9,15 +9,15 @@ spec:
   resources:
     requests:
       storage: 1Gi
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: manga-volume
-spec:
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: /d/kavita/manga
+# ---
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: manga-volume
+# spec:
+#   capacity:
+#     storage: 1Gi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: /d/kavita/manga
