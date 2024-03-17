@@ -1,0 +1,43 @@
+traefik:
+  globalArguments:
+    - "--global.sendanonymoususage=false"
+    - "--global.checknewversion=false"
+
+  additionalArguments:
+    - "--serversTransport.insecureSkipVerify=true"
+
+  logs:
+    general:
+      level: DEBUG
+
+  # deployment:
+  #   enabled: true
+  #   replicas: 1
+
+  ports:
+    web:
+      redirectTo:
+        port: websecure
+        priority: 10
+    websecure:
+      tls:
+        enabled: true
+
+
+  ingressRoute:
+    dashboard:
+      entryPoints:
+        - websecure
+      matchRule: Host(`traefik.local.cameran-lai.com`) && PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+      middlewares:
+        - name: traefik-dashboard-basicauth
+          namespace: traefik
+
+  rbac:
+    enabled: true
+
+  service:
+    enabled: true
+    type: LoadBalancer
+    spec:
+      loadBalancerIP: 172.212.23.130
