@@ -10,6 +10,12 @@ argo-cd:
   applicationSet:
     enabled: false
 
+  # server:
+  #   extraArgs:
+  #     - server
+  #     - --auth-mode=sso
+  #     - --access-control-allow-origin=*
+
   configs:
     repositories:
       private-repo:
