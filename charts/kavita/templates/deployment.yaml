@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: kavita
-          image: {{.Values.image }}
+          image: jvmilazz0/kavita:canary-0.7.14.10
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
