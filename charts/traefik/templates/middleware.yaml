@@ -6,3 +6,14 @@ metadata:
 spec:
   basicAuth:
     secret: traefik-dashboard-auth
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: add-dashboard-prefix
+spec:
+  stripPrefix:
+    prefixes:
+      - "/"
+  addPrefix:
+    prefix: "/dashboard/"

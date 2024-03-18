@@ -10,10 +10,6 @@ traefik:
     general:
       level: DEBUG
 
-  # deployment:
-  #   enabled: true
-  #   replicas: 1
-
   ports:
     web:
       redirectTo:
@@ -26,12 +22,13 @@ traefik:
 
   ingressRoute:
     dashboard:
-      entryPoints:
-        - websecure
-      matchRule: Host(`traefik.local.cameran-lai.com`) && PathPrefix(`/dashboard`) || PathPrefix(`/api`)
-      middlewares:
-        - name: traefik-dashboard-basicauth
-          namespace: traefik
+      enabled: false
+      # entryPoints:
+      #   - websecure
+      # matchRule: Host(`traefik.cameran-lai.com`) && PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+      # middlewares:
+      #   - name: traefik-dashboard-basicauth
+      #     namespace: traefik
 
   rbac:
     enabled: true

@@ -13,7 +13,11 @@ helm template charts/root-app -s templates/root-app.yaml | kubectl apply -f -
 
 kubectl delete <default-storage-class>
 
-kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.4/cert-manager.crds.yaml
+appVersion=curl -s https://api.github.com/repos/cert-manager/cert-manager/tags | jq -r '.[0].name'
+
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<appVersion>/cert-manager.crds.yaml
+
+Apply traefik and cert-manager secrets manually
 ```
 
 ## CRDs that need managing

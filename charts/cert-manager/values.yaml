@@ -2,3 +2,28 @@
 cert-manager:
   prometheus:
     enabled: false
+  installCRDs: false
+  extraArgs:
+    - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
+    - --dns01-recursive-nameservers-only
+  podDnsPolicy: None
+  podDnsConfig:
+    nameservers:
+      - "1.1.1.1"
+      - "9.9.9.9"
+  webhook:
+    validatingWebhookConfiguration:
+      namespaceSelector:
+        matchExpressions:
+          - key: cert-manager.io/disable-validation
+            operator: NotIn
+            values:
+              - 'true'
+          - key: control-plane
+            operator: NotIn
+            values:
+              - 'true'
+          - key: kubernetes.azure.com/managedby
+            operator: NotIn
+            values:
+              - aks
