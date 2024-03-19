@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cameran-lai
+  namespace: default
+spec:
+  secretName: kavita-cert
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "kavita.cameran-lai.com"
+  dnsNames:
+    - "kavita.cameran-lai.com"
