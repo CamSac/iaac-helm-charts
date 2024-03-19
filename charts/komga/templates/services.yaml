@@ -8,6 +8,6 @@ spec:
     app: komga
   ports:
     - protocol: TCP
-      port: 443
+      port: 80
       targetPort: 25600
   type: ClusterIP
