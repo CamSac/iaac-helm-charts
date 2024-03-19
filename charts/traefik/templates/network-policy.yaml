@@ -21,7 +21,7 @@ spec:
     - from:
       - namespaceSelector:
           matchLabels:
-            namespace: kubernetes.io/metadata.name=traefik
+            kubernetes.io/metadata.name: traefik
         podSelector:
           matchLabels:
             app: traefik
