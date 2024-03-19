@@ -23,6 +23,29 @@ spec:
       containers:
       - name: nginx
         image: nginx:latest
+        volumeMounts:
+          - name: nginx-html-volume
+            mountPath: /usr/share/nginx/html
+      volumes:
+        - name: nginx-html-volume
+          configMap:
+            name: nginx-html
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-html
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>You're a Bitch!</title>
+    </head>
+    <body>
+        <h1>You're a Bitch!</h1>
+    </body>
+    </html>
 ---
 apiVersion: v1
 kind: Service
@@ -46,7 +69,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`nginx.cameran-lai.com`)
+    - match: Host(`home.cameran-lai.com`)
       kind: Rule
       services:
         - name: nginx
