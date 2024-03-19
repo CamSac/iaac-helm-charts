@@ -24,4 +24,4 @@ spec:
             kubernetes.io/metadata.name: traefik
         podSelector:
           matchLabels:
-            app: traefik
+            app.kubernetes.io/name: traefik
