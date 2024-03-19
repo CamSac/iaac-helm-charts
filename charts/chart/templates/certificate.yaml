@@ -3,12 +3,11 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: cameran-lai
-  namespace: default
 spec:
-  secretName: nginx-cert
+  secretName: {{ .Values.name }}-cert
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: "nginx.cameran-lai.com"
+  commonName: {{ .Values.name }}.cameran-lai.com
   dnsNames:
-    - "nginx.cameran-lai.com"
+    - {{ .Values.name }}.cameran-lai.com

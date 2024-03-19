@@ -20,10 +20,16 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 Apply traefik and cert-manager secrets manually
 ```
 
-## CRDs that need managing
+## To Do
+
+- create a dependency helm chart to create ingress and certificates
+
+### CRDs that need managing
 
 - argocd
 
 - traefik
 
 - cert-manager
+
+kubectl -n staging run other-app --image alpine --restart Never --rm --stdin --tty -- sh
