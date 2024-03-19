@@ -3,7 +3,6 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: cameran-lai
-  namespace: default
 spec:
   secretName: kavita-cert
   issuerRef:
