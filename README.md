@@ -31,3 +31,5 @@ Apply traefik and cert-manager secrets manually
 - traefik
 
 - cert-manager
+
+kubectl -n staging run other-app --image alpine --restart Never --rm --stdin --tty -- sh

@@ -2,17 +2,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: nginx
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/CamSac/iaac-helm-charts
-    path: charts/argo-cd
+    path: charts/home-page
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
   syncPolicy:
     automated:
       selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

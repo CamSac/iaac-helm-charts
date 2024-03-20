@@ -1,0 +1,24 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: default-deny-all
+spec:
+  podSelector: {}
+  ingress:
+  - from:
+    - podSelector: {}
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ingress-allow-traefik
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name=traefik
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/name=traefik
