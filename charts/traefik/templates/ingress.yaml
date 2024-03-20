@@ -14,12 +14,12 @@ spec:
       services:
         - kind: TraefikService
           name: api@internal
-    # - match: Host(`traefik.cameran-lai.com`)
-    #   kind: Rule
-    #   middlewares:
-    #     - name: add-dashboard-prefix
-    #   services:
-    #     - kind: TraefikService
-    #       name: api@internal
+    - match: Host(`traefik.cameran-lai.com`)
+      kind: Rule
+      middlewares:
+        - name: add-dashboard-prefix
+      services:
+        - kind: TraefikService
+          name: api@internal
   tls:
     secretName: traefik-secret

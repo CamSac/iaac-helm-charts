@@ -11,8 +11,7 @@ kind: Middleware
 metadata:
   name: add-dashboard-prefix
 spec:
-  stripPrefix:
-    prefixes:
-      - "/"
-  addPrefix:
-    prefix: "/dashboard/"
+  redirectRegex:
+    regex: ".*#"
+    replacement: "/dashboard/#"
+    permanent: true
