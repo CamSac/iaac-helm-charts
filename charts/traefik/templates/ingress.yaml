@@ -2,13 +2,12 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: traefik-dashboard
-  namespace: traefik
 spec:
   entryPoints:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`traefik.cameran-lai.com`) && PathPrefix(`/dashboard`) || PathPrefix(`/api`)
+      match: Host(`traefik.cameran-lai.com`)
       middlewares:
         - name: traefik-dashboard-basicauth
           namespace: traefik

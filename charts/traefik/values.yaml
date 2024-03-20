@@ -16,8 +16,6 @@ traefik:
         port: websecure
         priority: 10
     websecure:
-      forwardedHeaders:
-        insecure: true
       tls:
         enabled: true
 
