@@ -7,7 +7,7 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`traefik.cameran-lai.com`)
+      match: Host(`traefik.cameran-lai.com`) && PathPrefix(`/dashboard`)
       middlewares:
         - name: traefik-dashboard-basicauth
           namespace: traefik
