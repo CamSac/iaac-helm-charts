@@ -59,20 +59,3 @@ spec:
   - name: http
     targetPort: 80
     port: 80
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
-  name: nginx
-  namespace: default
-spec:
-  entryPoints:
-    - websecure
-  routes:
-    - match: Host(`home.cameran-lai.com`)
-      kind: Rule
-      services:
-        - name: nginx
-          port: 80
-  tls:
-    secretName: nginx-cert
