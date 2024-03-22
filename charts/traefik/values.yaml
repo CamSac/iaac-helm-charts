@@ -37,4 +37,4 @@ traefik:
     enabled: true
     type: LoadBalancer
     spec:
-      loadBalancerIP: 10.42.0.25
+      loadBalancerIP: 192.168.10.1
