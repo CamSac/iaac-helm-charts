@@ -1,2 +1,3 @@
-name: kavita
-port: 80
+chart:
+  name: kavita
+  port: 80
