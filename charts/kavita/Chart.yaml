@@ -2,3 +2,7 @@
 apiVersion: v2
 name: kavita
 version: 1.0.0
+dependencies:
+  - name: chart
+    version: 1.0.0
+    repository: "file://../chart"

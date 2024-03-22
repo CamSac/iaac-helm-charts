@@ -13,7 +13,7 @@ helm template charts/root-app -s templates/root-app.yaml | kubectl apply -f -
 
 kubectl delete <default-storage-class>
 
-appVersion=curl -s https://api.github.com/repos/cert-manager/cert-manager/tags | jq -r '.[0].name'
+curl -s https://api.github.com/repos/cert-manager/cert-manager/tags | jq -r '.[0].name'
 
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<appVersion>/cert-manager.crds.yaml
 
