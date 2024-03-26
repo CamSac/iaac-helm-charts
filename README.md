@@ -26,6 +26,8 @@ sudo iptables -t nat -A PREROUTING -p tcp -d 10.0.0.5 --dport 443 -j REDIRECT --
 
 - create a dependency helm chart to create ingress and certificates
 
+- get fixed ip address from router and setup DDNS
+
 ### CRDs that need managing
 
 - argocd
