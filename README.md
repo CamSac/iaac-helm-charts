@@ -18,6 +18,8 @@ curl -s https://api.github.com/repos/cert-manager/cert-manager/tags | jq -r '.[0
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/<appVersion>/cert-manager.crds.yaml
 
 Apply traefik and cert-manager secrets manually
+
+sudo iptables -t nat -A PREROUTING -p tcp -d 10.0.0.5 --dport 443 -j REDIRECT --to-port 30443
 ```
 
 ## To Do

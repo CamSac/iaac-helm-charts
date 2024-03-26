@@ -15,20 +15,16 @@ traefik:
       redirectTo:
         port: websecure
         priority: 10
+      nodePort: 30080
     websecure:
       tls:
         enabled: true
+      nodePort: 30443
 
 
   ingressRoute:
     dashboard:
       enabled: false
-      # entryPoints:
-      #   - websecure
-      # matchRule: Host(`traefik.cameran-lai.com`) && PathPrefix(`/dashboard`) || PathPrefix(`/api`)
-      # middlewares:
-      #   - name: traefik-dashboard-basicauth
-      #     namespace: traefik
 
   rbac:
     enabled: true
@@ -37,4 +33,4 @@ traefik:
     enabled: true
     type: LoadBalancer
     spec:
-      loadBalancerIP: 10.0.0.5
+      loadBalancerIP: 10.0.0.100
