@@ -11,16 +11,3 @@ spec:
       port: 80
       targetPort: 5000
   type: ClusterIP
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: browser-service
-spec:
-  selector:
-    app: kavita
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: ClusterIP

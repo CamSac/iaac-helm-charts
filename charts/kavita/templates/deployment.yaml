@@ -27,14 +27,6 @@ spec:
           env:
             - name: TZ
               value: America/New_York
-        - name: browser
-          image: filebrowser/filebrowser:v2.27.0
-          ports:
-            - containerPort: 80
-              name: http
-          volumeMounts:
-            - name: manga
-              mountPath: /srv
       restartPolicy: Always
       volumes:
         - name: manga
