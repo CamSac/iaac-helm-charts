@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: kavita
-          image: jvmilazz0/kavita:canary-0.7.14.10
+          image: jvmilazz0/kavita:canary-0.7.14.11
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
