@@ -8,7 +8,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 25Gi
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -16,7 +16,7 @@ metadata:
   name: manga-volume
 spec:
   capacity:
-    storage: 1Gi
+    storage: 25Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
