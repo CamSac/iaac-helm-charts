@@ -30,8 +30,8 @@ spec:
       restartPolicy: Always
       volumes:
         - name: manga
-          persistentVolumeClaim:
-            claimName: manga-volume
+          hostPath:
+            path: /kavita/manga
         - name: config
-          persistentVolumeClaim:
-            claimName: config-volume
+          hostPath:
+            path: /kavita/config

@@ -21,7 +21,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 ## To Do
 
-- create a dependency helm chart to create ingress and certificates
+- create a dependency helm chart to create deployments, services, and volume mounts
 
 - get fixed ip address from router and setup DDNS
 
