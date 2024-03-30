@@ -8,7 +8,7 @@ traefik:
 
   logs:
     general:
-      level: DEBUG
+      level: INFO
 
   ports:
     web:
@@ -20,7 +20,6 @@ traefik:
       tls:
         enabled: true
       nodePort: 30443
-
 
   ingressRoute:
     dashboard:
