@@ -7,6 +7,8 @@ traefik:
     - "--serversTransport.insecureSkipVerify=true"
 
   logs:
+    access:
+      enabled: true
     general:
       level: INFO
 
@@ -20,6 +22,8 @@ traefik:
       tls:
         enabled: true
       nodePort: 30443
+      middlewares:
+        - "traefik-bouncer@kubernetescrd"
 
   ingressRoute:
     dashboard:
@@ -33,3 +37,15 @@ traefik:
     type: LoadBalancer
     spec:
       loadBalancerIP: 192.168.68.49
+      externalTrafficPolicy: Local
+
+  volumes:
+    - name: crowdsec-bouncer-tls
+      mountPath: /etc/traefik/crowdsec-certs/
+      type: secret
+
+  experimental:
+    plugins:
+      bouncer:
+        moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+        version: v1.2.1

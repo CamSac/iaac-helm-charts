@@ -48,3 +48,5 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 - metallb
 
 - k3s version
+
+- keep an eye on traefik experimental plugin
