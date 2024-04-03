@@ -2,19 +2,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: crowdsec
+  name: traefik
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/CamSac/iaac-helm-charts
-    path: charts/crowdsec
+    path: charts/Infrastructure/traefik
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: crowdsec
+    namespace: traefik
   syncPolicy:
     automated:
-      selfHeal: false
+      selfHeal: true
     syncOptions:
     - CreateNamespace=true
