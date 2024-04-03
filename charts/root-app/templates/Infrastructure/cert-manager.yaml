@@ -2,19 +2,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: traefik
+  name: cert-manager
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/CamSac/iaac-helm-charts
-    path: charts/traefik
+    path: charts/Infrastructure/cert-manager
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: traefik
+    namespace: cert-manager
   syncPolicy:
     automated:
-      selfHeal: true
+      selfHeal: false
     syncOptions:
     - CreateNamespace=true

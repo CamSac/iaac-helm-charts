@@ -8,7 +8,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/CamSac/iaac-helm-charts
-    path: charts/home-page
+    path: charts/Application/home-page
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

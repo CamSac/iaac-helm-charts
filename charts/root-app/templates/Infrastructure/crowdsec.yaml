@@ -2,19 +2,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kavita
+  name: crowdsec
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/CamSac/iaac-helm-charts
-    path: charts/kavita
+    path: charts/Infrastructure/crowdsec
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: kavita
+    namespace: crowdsec
   syncPolicy:
     automated:
-      selfHeal: true
+      selfHeal: false
     syncOptions:
     - CreateNamespace=true
