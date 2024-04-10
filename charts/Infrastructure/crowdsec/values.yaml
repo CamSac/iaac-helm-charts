@@ -18,7 +18,7 @@ crowdsec:
       - name: PARSERS
         value: "crowdsecurity/cri-logs crowdsecurity/whitelists"
       - name: COLLECTIONS
-        value: "crowdsecurity/linux crowdsecurity/traefik crowdsecurity/home-assistant LePresidente/authelia Dominic-Wagner/vaultwarden crowdsecurity/unifi"
+        value: "crowdsecurity/linux crowdsecurity/traefik crowdsecurity/http-cve LePresidente/authelia firix/authentik MariuszKociubinski/bitwarden Dominic-Wagner/vaultwarden"
     persistentVolume:
       config:
         enabled: false

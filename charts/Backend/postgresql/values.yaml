@@ -1,4 +1,8 @@
 postgresql:
+  postgresql:
+    v1:
+      primary:
+        fullname:
   auth:
     existingSecret: postgres-password
   primary:
@@ -7,10 +11,13 @@ postgresql:
         matchLabels:
           type: data
   backup:
-    ## @param backup.enabled Enable the logical dump of the database "regularly"
     enabled: true
     cronjob:
-      ## @param backup.cronjob.schedule Set the cronjob parameter schedule
+      command:
+        - "/bin/sh"
+        - "-c"
+        - "pg_dumpall --clean --if-exists --load-via-partition-root -h postgresql.database.svc.cluster.local --quote-all-identifiers --no-password --file=${PGDUMP_DIR}/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump"
+      ttlSecondsAfterFinished: 60
       schedule: "@weekly"
       storage:
         volumeClaimTemplates:

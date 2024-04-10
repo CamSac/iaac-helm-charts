@@ -1,12 +1,13 @@
 redis:
+  image:
+    registry: docker.io
+    repository: redis
+    tag: 7.2.4
   architecture: standalone
 
   auth:
-    existingSecret: "redis-password"
+    existingSecret: redis-password
 
   master:
-    extraEnvVars:
-      - name: OS_ARCH
-        value: arm64
     persistence:
       enabled: false
