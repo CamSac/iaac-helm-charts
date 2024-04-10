@@ -22,6 +22,7 @@ spec:
           volumeMounts:
             - name: manga
               mountPath: /manga
+              readOnly: true
             - name: config
               mountPath: /kavita/config
           env:

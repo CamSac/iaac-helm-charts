@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-data-pv
+  labels:
+    type: data
+spec:
+  capacity:
+    storage: 8Gi
+  volumeMode: Filesystem
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/postgresql/data
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-backup-pv
+  labels:
+    type: backup
+spec:
+  capacity:
+    storage: 8Gi
+  volumeMode: Filesystem
+  storageClassName: local-path
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/postgresql/backup

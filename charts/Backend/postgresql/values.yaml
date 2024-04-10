@@ -1,0 +1,19 @@
+postgresql:
+  auth:
+    existingSecret: postgres-password
+  primary:
+    persistence:
+      selector:
+        matchLabels:
+          type: data
+  backup:
+    ## @param backup.enabled Enable the logical dump of the database "regularly"
+    enabled: true
+    cronjob:
+      ## @param backup.cronjob.schedule Set the cronjob parameter schedule
+      schedule: "@weekly"
+      storage:
+        volumeClaimTemplates:
+          selector:
+            matchLabels:
+              type: backup

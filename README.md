@@ -37,6 +37,8 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 - maybe learn kustomize since it will handles crds for me
 
+- add resources limits and user restrictions on helm charts
+
 ### CRDs that need managing
 
 - argocd
