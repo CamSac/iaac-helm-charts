@@ -9,15 +9,23 @@ spec:
   resources:
     requests:
       storage: 1Gi
+  selector:
+    matchLabels:
+      app: vaultwarden
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: vault-volume
+  labels:
+    app: vaultwarden
 spec:
   capacity:
     storage: 1Gi
+  volumeMode: Filesystem
+  storageClassName: local-path
   accessModes:
     - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: /data
+    path: /data/vaultwarden

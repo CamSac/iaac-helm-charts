@@ -8,9 +8,11 @@ spec:
   routes:
     - kind: Rule
       match: Host(`{{ .Values.name }}.cameran-lai.com`)
+      {{- if .Values.authentik.enabled }}
       middlewares:
         - name: authentik
           namespace: traefik
+      {{- end }}
       services:
         - name: {{ .Values.name }}-service
           port: {{ .Values.port }}

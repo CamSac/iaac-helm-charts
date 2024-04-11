@@ -2,17 +2,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: nginx
+  name: vaultwarden
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/CamSac/iaac-helm-charts
-    path: charts/Application/home-page
+    path: charts/Application/vaultwarden
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: vaultwarden
   syncPolicy:
     automated:
       selfHeal: true

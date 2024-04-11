@@ -2,3 +2,7 @@
 apiVersion: v2
 name: vaultwarden
 version: 1.0.0
+dependencies:
+  - name: chart
+    version: 1.0.2
+    repository: "file://../../chart"

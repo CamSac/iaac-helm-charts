@@ -15,19 +15,22 @@ spec:
       labels:
         app: vaultwarden
     spec:
-      securityContext:
-        fsGroup: 2000
       containers:
-      - name: vaultwarden
-        image: vaultwarden/server:1.30.5
-        ports:
-          - containerPort: 80
-        # securityContext:
-        #   runAsUser: 1001
-        #   runAsGroup: 2000
-        volumeMounts:
-          - name: vault-volume
-            mountPath: /data
+        - name: vaultwarden
+          image: vaultwarden/server:1.30.5
+          ports:
+            - containerPort: 80
+          securityContext:
+            runAsUser: 1002
+            runAsGroup: 1002
+          volumeMounts:
+            - name: vault-volume
+              mountPath: /data
+          env:
+            - name: TZ
+              value: America/New_York
+      securityContext:
+        fsGroup: 1002
       volumes:
         - name: vault-volume
           persistentVolumeClaim:

@@ -1,8 +1,0 @@
----
-apiVersion: v2
-name: home-page
-version: 1.0.0
-dependencies:
-  - name: chart
-    version: 1.0.1
-    repository: "file://../../chart"

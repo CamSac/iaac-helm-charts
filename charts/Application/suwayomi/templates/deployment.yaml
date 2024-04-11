@@ -13,18 +13,20 @@ spec:
       labels:
         app: suwayomi
     spec:
+      securityContext:
+        fsGroup: 1003
       containers:
         - name: suwayomi
           image: ghcr.io/suwayomi/tachidesk:v1.0.0
-          # imagePullPolicy: Always
+          imagePullPolicy: Always
           ports:
             - containerPort: 4567
           volumeMounts:
             - name: suwayomi
               mountPath: /home/suwayomi/.local/share/Tachidesk
           securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
+            runAsUser: 1003
+            runAsGroup: 1003
           env:
             - name: TZ
               value: America/New_York

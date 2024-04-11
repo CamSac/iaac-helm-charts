@@ -25,19 +25,15 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 - get fixed ip address from router and setup DDNS
 
-- investigate non root user on kavita and filebrowser(or alternatives)
-
-- overwrite rancher default storage class
-
 - bitwarden and use passwords for this
-
-- setup argo cd
 
 - create an even better helm repo based on lazy-helm-charts
 
 - maybe learn kustomize since it will handles crds for me
 
 - add resources limits and user restrictions on helm charts
+
+- argocd dex and authentik
 
 ### CRDs that need managing
 
@@ -52,3 +48,19 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 - k3s version
 
 - keep an eye on traefik experimental plugin
+
+###
+
+| Application | user    | volume |
+|-------------|---------|--------|
+| crowdsec    | root    | yes    |
+| kavita      | root    | yes    |
+| postgresql  | 1001    | yes    |
+| suwayomi    | 1003    | yes    |
+| vaultwarden | 1003    | yes    |
+| argoCD      | argocd  | no     |
+| authentik   | 1000    | no     |
+| certmanager | unknown | no     |
+| metallb     | 100     | no     |
+| Redis       | 1001    | no     |
+| treafik     | 65532   | no     |
