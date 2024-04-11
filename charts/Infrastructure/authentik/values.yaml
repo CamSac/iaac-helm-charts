@@ -1,0 +1,103 @@
+authentik:
+  global:
+    securityContext:
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    env:
+    - name: AUTHENTIK_POSTGRESQL__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-passwords
+          key: POSTGRESQL_PASSWORD
+    - name: AUTHENTIK_REDIS__PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: authentik-passwords
+          key: REDIS_PASSWORD
+    - name: AUTHENTIK_SECRET_KEY
+      valueFrom:
+        secretKeyRef:
+          name: authentik-passwords
+          key: AUTHENTIK_SECRET_KEY
+
+  authentik:
+    postgresql:
+      host: "postgresql.database.svc.cluster.local"
+    redis:
+      host: "redis-master.database.svc.cluster.local"
+
+  server:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+      limits:
+        memory: 512Mi
+
+    containerSecurityContext:
+      runAsNonRoot: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+    livenessProbe:
+      periodSeconds: 60
+
+    readinessProbe:
+      periodSeconds: 60
+
+    startupProbe:
+      periodSeconds: 60
+
+    ingress:
+      # -- enable an ingress resource for the authentik server
+      enabled: false
+      # -- additional ingress annotations
+      annotations: {}
+      # -- additional ingress labels
+      labels: {}
+      # -- defines which ingress controller will implement the resource
+      ingressClassName: ""
+      # -- List of ingress hosts
+      hosts: []
+        # - authentik.domain.tld
+
+      # -- List of ingress paths
+      paths:
+        - /
+      # -- Ingress path type. One of `Exact`, `Prefix` or `ImplementationSpecific`
+      pathType: Prefix
+      # -- additional ingress paths
+      extraPaths: []
+        # - path: /*
+        #   pathType: Prefix
+        #   backend:
+        #     service:
+        #       name: ssl-redirect
+        #       port:
+        #         name: use-annotation
+
+      # -- ingress TLS configuration
+      tls: []
+        # - secretName: authentik-tls
+        #   hosts:
+        #     - authentik.domain.tld
+
+      # -- uses `server.service.servicePortHttps` instead of `server.service.servicePortHttp`
+      https: false
+
+  worker:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 512Mi
+      limits:
+        memory: 512Mi
+
+    containerSecurityContext:
+      runAsNonRoot: true
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL

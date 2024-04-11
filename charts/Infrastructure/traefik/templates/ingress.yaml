@@ -9,7 +9,7 @@ spec:
     - kind: Rule
       match: Host(`traefik.cameran-lai.com`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))
       middlewares:
-        - name: traefik-dashboard-basicauth
+        - name: authentik
           namespace: traefik
       services:
         - kind: TraefikService

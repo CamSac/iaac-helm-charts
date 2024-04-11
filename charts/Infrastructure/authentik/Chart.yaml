@@ -3,6 +3,6 @@ apiVersion: v2
 name: authentik
 version: 1.0.0
 dependencies:
-  - name: metallb
-    version: 0.14.4
-    repository: https://metallb.github.io/metallb
+  - name: authentik
+    version: 2024.2.2
+    repository: https://charts.goauthentik.io

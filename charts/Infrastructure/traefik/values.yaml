@@ -5,6 +5,7 @@ traefik:
 
   additionalArguments:
     - "--serversTransport.insecureSkipVerify=true"
+    - "--providers.kubernetescrd.allowCrossNamespace=true"
 
   logs:
     access:
@@ -23,7 +24,7 @@ traefik:
         enabled: true
       nodePort: 30443
       middlewares:
-        - "traefik-bouncer@kubernetescrd"
+        # - "traefik-bouncer@kubernetescrd"
 
   ingressRoute:
     dashboard:
