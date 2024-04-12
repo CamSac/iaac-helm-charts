@@ -1,29 +1,28 @@
 crowdsec:
   container_runtime: containerd
+
   tls:
     enabled: true
     bouncer:
       reflector:
         namespaces: ["traefik"]
+
   agent:
-    # Specify each pod whose logs you want to process
     acquisition:
-      # The namespace where the pod is located
       - namespace: traefik
-        # The pod name
         podName: traefik-*
-        # as in crowdsec configuration, we need to specify the program name to find a matching parser
         program: traefik
     env:
       - name: PARSERS
         value: "crowdsecurity/cri-logs crowdsecurity/whitelists"
       - name: COLLECTIONS
-        value: "crowdsecurity/linux crowdsecurity/traefik crowdsecurity/http-cve LePresidente/authelia firix/authentik MariuszKociubinski/bitwarden Dominic-Wagner/vaultwarden"
+        value: "crowdsecurity/linux crowdsecurity/traefik firix/authentik MariuszKociubinski/bitwarden Dominic-Wagner/vaultwarden crowdsecurity/whitelist-good-actors"
     persistentVolume:
       config:
         enabled: false
     image:
       pullPolicy: Always
+
   lapi:
     dashboard:
       enabled: false
@@ -45,5 +44,6 @@ crowdsec:
         value: "raspberry-pi"
       - name: ENROLL_TAGS
         value: "homelab"
+
   image:
     pullPolicy: Always

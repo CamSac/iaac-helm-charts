@@ -35,6 +35,8 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 - argocd dex and authentik
 
+- automate cloudflare IP address whitelist
+
 ### CRDs that need managing
 
 - argocd

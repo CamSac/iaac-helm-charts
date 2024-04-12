@@ -24,7 +24,7 @@ traefik:
         enabled: true
       nodePort: 30443
       middlewares:
-        # - "traefik-bouncer@kubernetescrd"
+        - "traefik-bouncer@kubernetescrd"
 
   ingressRoute:
     dashboard:
