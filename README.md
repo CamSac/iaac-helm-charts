@@ -49,7 +49,9 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 - k3s version
 
-- keep an eye on traefik experimental plugin
+  - sudo systemctl stop k3s
+
+  - curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server" sh -s - --disable=traefik --disable=servicelb --write-kubeconfig-mode=644
 
 ###
 
@@ -61,7 +63,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 | suwayomi    | 1003    | yes    |
 | vaultwarden | 1003    | yes    |
 | argoCD      | argocd  | no     |
-| authentik   | 1000    | no     |
+| authentik   | 1000    | no     | (Same as camer)
 | certmanager | unknown | no     |
 | metallb     | 100     | no     |
 | Redis       | 1001    | no     |
