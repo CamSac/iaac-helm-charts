@@ -41,7 +41,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 - argocd
 
-- traefik
+- traefik (managed by helm chart)
 
 - cert-manager
 
