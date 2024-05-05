@@ -33,7 +33,7 @@ authentik:
         cpu: 100m
         memory: 512Mi
       limits:
-        memory: 512Mi
+        memory: 771Mi
 
     containerSecurityContext:
       runAsNonRoot: true
@@ -93,7 +93,7 @@ authentik:
         cpu: 100m
         memory: 512Mi
       limits:
-        memory: 512Mi
+        memory: 771Mi
 
     containerSecurityContext:
       runAsNonRoot: true
