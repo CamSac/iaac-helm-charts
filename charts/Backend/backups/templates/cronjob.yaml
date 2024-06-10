@@ -1,0 +1,33 @@
+apiVersion: batch/v2alpha1
+kind: CronJob
+metadata:
+  name: update_db
+spec:
+  volumes:
+  - name: application-code
+    persistentVolumeClaim:
+      claimName: application-code-pv-claim
+  schedule: "0 0 * * 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            fsGroup: 1002
+          containers:
+          - name: backup
+            image: busybox:latest
+            command: ["/bin/bash"]
+            args: ["-c", "echo", "test"]
+            securityContext:
+              runAsUser: 1002
+              runAsGroup: 1002
+            volumeMounts:
+            - name: vault-volume
+              mountPath: /data
+          restartPolicy: OnFailure
+          volumes:
+          - name: vault-volume
+            persistentVolumeClaim:
+              claimName: vault-volume
+

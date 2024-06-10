@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kavita
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kavita
+  template:
+    metadata:
+      labels:
+        app: komga
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: komga
+          image: gotson/komga:1.11.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 25600
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              readOnly: true
+            - name: config
+              mountPath: /config
+          env:
+            - name: TZ
+              value: America/New_York
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+    restartPolicy: Always
+      volumes:
+        - name: data
+          hostPath:
+            path: /komga/data
+        - name: config
+          hostPath:
+            path: /komga/config
