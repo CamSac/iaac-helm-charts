@@ -2,19 +2,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kavita
+  name: komga
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kavita
+      app: komga
   template:
     metadata:
       labels:
         app: komga
     spec:
-      securityContext:
-        fsGroup: 1000
       containers:
         - name: komga
           image: gotson/komga:1.11.1
@@ -33,11 +31,13 @@ spec:
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
-    restartPolicy: Always
+      restartPolicy: Always
+      securityContext:
+          fsGroup: 1000
       volumes:
         - name: data
           hostPath:
-            path: /komga/data
+            path: /data/manga
         - name: config
           hostPath:
-            path: /komga/config
+            path: /data/komga/config

@@ -1,3 +1,5 @@
 chart:
   name: komga
   port: 80
+  authentik:
+    enabled: true

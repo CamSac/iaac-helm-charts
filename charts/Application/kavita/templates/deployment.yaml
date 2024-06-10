@@ -28,11 +28,16 @@ spec:
           env:
             - name: TZ
               value: America/New_York
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
       restartPolicy: Always
+      securityContext:
+        fsGroup: 1000
       volumes:
         - name: manga
           hostPath:
-            path: /kavita/manga
+            path: /data/manga
         - name: config
           hostPath:
-            path: /kavita/config
+            path: /data/kavita/config
