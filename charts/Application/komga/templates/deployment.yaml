@@ -2,29 +2,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kavita
+  name: komga
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kavita
+      app: komga
   template:
     metadata:
       labels:
-        app: kavita
+        app: komga
     spec:
       containers:
-        - name: kavita
-          image: jvmilazz0/kavita:0.8.1
+        - name: komga
+          image: gotson/komga:1.11.1
           imagePullPolicy: Always
           ports:
-            - containerPort: 5000
+            - containerPort: 25600
           volumeMounts:
-            - name: manga
-              mountPath: /manga
+            - name: data
+              mountPath: /data
               readOnly: true
             - name: config
-              mountPath: /kavita/config
+              mountPath: /config
           env:
             - name: TZ
               value: America/New_York
@@ -33,11 +33,11 @@ spec:
             runAsGroup: 1000
       restartPolicy: Always
       securityContext:
-        fsGroup: 1000
+          fsGroup: 1000
       volumes:
-        - name: manga
+        - name: data
           hostPath:
             path: /data/manga
         - name: config
           hostPath:
-            path: /data/kavita/config
+            path: /data/komga/config
