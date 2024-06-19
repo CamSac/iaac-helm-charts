@@ -28,6 +28,9 @@ spec:
           env:
             - name: TZ
               value: America/New_York
+          envFrom:
+            - configMapRef:
+                name: authentik-oidc
           securityContext:
             runAsUser: 1000
             runAsGroup: 1000
