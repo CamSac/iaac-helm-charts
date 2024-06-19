@@ -8,9 +8,9 @@ spec:
   routes:
     - kind: Rule
       match: Host(`argo.cameran-lai.com`)
-      middlewares:
-        - name: authentik
-          namespace: traefik
+      # middlewares:
+      #   - name: authentik
+      #     namespace: traefik
       services:
         - name: argocd-server
           port: 443

@@ -6,7 +6,7 @@ argo-cd:
   # server:
   #   replicas: 2
   dex:
-    enabled: false
+    enabled: true
   notifications:
     enabled: false
   applicationSet:
@@ -22,6 +22,24 @@ argo-cd:
     repositories:
       private-repo:
         url: https://github.com/CamSac/iaac-helm-charts
+
+    cm:
+      admin.enabled: false
+      url: https://argo.cameran-lai.com
+      dex.config: |
+        connectors:
+        - config:
+            issuer: https://auth.cameran-lai.com/application/o/argo-cd/
+            clientID: $authentik-oidc:dex.authentik.clientID
+            clientSecret: $authentik-oidc:dex.authentik.clientSecret
+            insecureEnableGroups: true
+            scopes:
+              - openid
+              - profile
+              - email
+          name: authentik
+          type: oidc
+          id: authentik
 
     credentialTemplates:
       private-repo:
@@ -58,3 +76,7 @@ argo-cd:
           D7jVMhUKrqi0k5Jf1N/Rxij2VOw7fQkrEQhs5RMe9qoZRgp7RyuA8yjoV7btYgPE
           DYG2Jh5jg37k9gxnSmBtPFgEa7MB0SVelTDFlFAQ7Q/l0ncmLUvMEg==
           -----END RSA PRIVATE KEY-----
+
+    rbac:
+      policy.csv: |
+        g, authentik Admins, role:admin
