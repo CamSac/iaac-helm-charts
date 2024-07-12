@@ -7,5 +7,5 @@ dependencies:
     version: 0.11.0
     repository: https://crowdsecurity.github.io/helm-charts
   - name: reflector
-    version: v7.1.262
+    version: 7.1.288
     repository: https://emberstack.github.io/helm-charts
