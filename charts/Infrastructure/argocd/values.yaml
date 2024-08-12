@@ -6,7 +6,7 @@ argo-cd:
   # server:
   #   replicas: 2
   dex:
-    enabled: true
+    enabled: false
   notifications:
     enabled: false
   applicationSet:
