@@ -24,7 +24,7 @@ argo-cd:
         url: https://github.com/CamSac/iaac-helm-charts
 
     cm:
-      admin.enabled: false
+      # admin.enabled: false
       url: https://argo.cameran-lai.com
       dex.config: |
         connectors:
