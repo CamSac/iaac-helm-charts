@@ -5,7 +5,7 @@ postgresql:
         fullname:
   image:
     tag: 16.4.0-debian-12-r14
-  
+
   auth:
     existingSecret: postgres-password
   primary:
