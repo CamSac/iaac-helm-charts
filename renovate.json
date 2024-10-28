@@ -43,13 +43,6 @@
       "matchDepTypes": ["github-releases"],
       "enabled": true,
       "matchRepositories": "https://github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
-    },
-    {
-      "matchDatasources": ["docker"],
-      "enabled": true,
-      "versioning": "docker",
-      "versioning-strategy": "auto",
-      "separateMinorPatch": true
     }
   ]
 }
