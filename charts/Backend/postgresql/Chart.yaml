@@ -4,5 +4,5 @@ name: postgresql
 version: 1.0.0
 dependencies:
   - name: postgresql
-    version: 16.0.0
+    version: 16.0.6
     repository: https://charts.bitnami.com/bitnami
