@@ -20,27 +20,43 @@
       "customType": "regex",
       "datasourceTemplate": "custom.k3s",
       "depNameTemplate": "k3s",
-      "fileMatch": ["k3s.version"],
-      "matchStrings": ["(?<currentValue>\\S+)"],
+      "fileMatch": [
+        "k3s.version"
+      ],
+      "matchStrings": [
+        "(?<currentValue>\\S+)"
+      ],
       "versioningTemplate": "semver-coerced"
     },
     {
+      "customType": "regex",
       "currentValueTemplate": "{{{version}}}",
       "datasourceTemplate": "github-releases",
       "depNameTemplate": "maxlerebourg/crowdsec-bouncer-traefik-plugin",
-      "fileMatch": ["\\.yaml$"],
-      "matchStrings": ["\\s*moduleName:\\s*github\\.com/maxlerebourg/crowdsec-bouncer-traefik-plugin\\s*version:\\s*(?<version>[^\\s]+)"]
+      "fileMatch": [
+        "\\.yaml$"
+      ],
+      "matchStrings": [
+        "\\s*moduleName:\\s*github\\.com/maxlerebourg/crowdsec-bouncer-traefik-plugin\\s*version:\\s*(?<version>[^\\s]+)"
+      ]
     }
   ],
   "kubernetes": {
-    "fileMatch": ["\\.yaml$"]
-  },
-  "docker": {
-    "enabled": true
+    "fileMatch": [
+      "\\.yaml$"
+    ]
   },
   "packageRules": [
     {
-      "matchDepTypes": ["github-releases"],
+      "matchCategories": [
+        "docker"
+      ],
+      "enabled": true
+    },
+    {
+      "matchDepTypes": [
+        "github-releases"
+      ],
       "enabled": true,
       "matchRepositories": "https://github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
     }
