@@ -1,0 +1,5 @@
+chart:
+  name: cbz-backend
+  port: 80
+  authentik:
+    enabled: true

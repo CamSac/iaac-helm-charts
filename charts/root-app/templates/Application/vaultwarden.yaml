@@ -15,6 +15,6 @@ spec:
     namespace: vaultwarden
   syncPolicy:
     automated:
-      selfHeal: true
+      selfHeal: false
     syncOptions:
     - CreateNamespace=true

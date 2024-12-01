@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cbz-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cbz-backend
+  template:
+    metadata:
+      labels:
+        app: cbz-backend
+    spec:
+      containers:
+        - name: cbz-backend
+          image: 917059133836.dkr.ecr.us-east-1.amazonaws.com/cbz/cbz-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: share
+              mountPath: /data/share
+              readOnly: true
+            - name: pi
+              mountPath: /data/pi
+          envFrom:
+            - configMapRef:
+                name: cbz-backend
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+      restartPolicy: Always
+      securityContext:
+          fsGroup: 1000
+      volumes:
+        - name: data
+          hostPath:
+            path: /data/manga
+        - name: config
+          hostPath:
+            path: /data/share/manga
