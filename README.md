@@ -11,7 +11,7 @@ kubectl delete <default-storage-class>
 
 kubectl apply -k "https://github.com/argoproj/argo-cd/manifests/crds?ref=<appVersion>"
 
-helm upgrade --install argocd ./charts/argocd --create-namespace --namespace argocd
+helm upgrade --install argocd ./charts/Infrastructure/argocd --create-namespace --namespace argocd
 
 curl -s https://api.github.com/repos/cert-manager/cert-manager/tags | jq -r '.[0].name'
 
