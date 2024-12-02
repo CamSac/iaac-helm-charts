@@ -1,18 +1,21 @@
 ---
 argo-cd:
 
+  crds:
+    install: false
+
   dex:
-    enabled: true
+    enabled: false
   notifications:
     enabled: false
   applicationSet:
     enabled: false
 
-  server:
-    extraArgs:
-      - server
-      - --auth-mode=sso
-      - --access-control-allow-origin=*
+#  server:
+#    extraArgs:
+#      - server
+#      - --auth-mode=sso
+#      - --access-control-allow-origin=*
 
   configs:
 
