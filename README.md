@@ -43,14 +43,13 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 | Application | user    | volume |
 |-------------|---------|--------|
-| cbx-backend | root    | yes    |
+| cbz-backend | 1000    | yes    | (camer)
 | crowdsec    | root    | yes    |
-| kavita      | root    | yes    |
+| kavita      | 1000    | yes    | (camer)
 | postgresql  | 1001    | yes    |
-| suwayomi    | 1003    | yes    |
-| vaultwarden | 1003    | yes    |
+| vaultwarden | 1002    | yes    |
 | argoCD      | argocd  | no     |
-| authentik   | 1000    | no     | (Same as camer)
+| authentik   | 1000    | no     |
 | certmanager | unknown | no     |
 | metallb     | 100     | no     |
 | Redis       | 1001    | no     |
