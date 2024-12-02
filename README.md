@@ -21,27 +21,13 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 ## To Do
 
-- create a dependency helm chart to create deployments, services, and volume mounts
-
-- get fixed ip address from router and setup DDNS
-
 - bitwarden and use passwords for this
-
-- create an even better helm repo based on lazy-helm-charts
 
 - maybe learn kustomize since it will handles crds for me
 
 - add resources limits and user restrictions on helm charts
 
-- argocd dex and authentik
-
-- automate cloudflare IP address whitelist
-
 ### CRDs that need managing
-
-- argocd
-
-- traefik (managed by helm chart)
 
 - cert-manager
 
@@ -57,6 +43,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 
 | Application | user    | volume |
 |-------------|---------|--------|
+| cbx-backend | root    | yes    |
 | crowdsec    | root    | yes    |
 | kavita      | root    | yes    |
 | postgresql  | 1001    | yes    |
