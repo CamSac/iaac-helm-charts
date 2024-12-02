@@ -1,0 +1,4 @@
+name: home
+port: 80
+authentik:
+  enabled: true

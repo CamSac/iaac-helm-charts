@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: suwayomi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: suwayomi
+  template:
+    metadata:
+      labels:
+        app: suwayomi
+    spec:
+      securityContext:
+        fsGroup: 1003
+      containers:
+        - name: suwayomi
+          image: ghcr.io/suwayomi/tachidesk:v1.1.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4567
+          volumeMounts:
+            - name: suwayomi
+              mountPath: /home/suwayomi/.local/share/Tachidesk
+          securityContext:
+            runAsUser: 1003
+            runAsGroup: 1003
+          env:
+            - name: TZ
+              value: America/New_York
+            - name: DOWNLOAD_AS_CBZ
+              value: "true"
+            - name: EXTENSION_REPOS
+              value: "[\"https://raw.githubusercontent.com/keiyoushi/extensions/repo/index.min.json\"]"
+      restartPolicy: Always
+      volumes:
+        - name: suwayomi
+          persistentVolumeClaim:
+            claimName: suwayomi-volume

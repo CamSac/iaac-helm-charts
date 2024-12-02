@@ -1,0 +1,64 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "group:allNonMajor"
+  ],
+  "schedule": [
+    "before 4am"
+  ],
+  "customDatasources": {
+    "k3s": {
+      "defaultRegistryUrlTemplate": "https://update.k3s.io/v1-release/channels",
+      "transformTemplates": [
+        "{\"releases\":[{\"version\": $$.(data[id = 'stable'].latest),\"sourceUrl\":\"https://github.com/k3s-io/k3s\",\"changelogUrl\":$join([\"https://github.com/k3s-io/k3s/releases/tag/\",data[id = 'stable'].latest])}],\"sourceUrl\": \"https://github.com/k3s-io/k3s\",\"homepage\": \"https://k3s.io/\"}"
+      ]
+    }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "custom.k3s",
+      "depNameTemplate": "k3s",
+      "fileMatch": [
+        "k3s.version"
+      ],
+      "matchStrings": [
+        "(?<currentValue>\\S+)"
+      ],
+      "versioningTemplate": "semver-coerced"
+    },
+    {
+      "customType": "regex",
+      "currentValueTemplate": "{{{version}}}",
+      "datasourceTemplate": "github-releases",
+      "depNameTemplate": "maxlerebourg/crowdsec-bouncer-traefik-plugin",
+      "fileMatch": [
+        "\\.yaml$"
+      ],
+      "matchStrings": [
+        "\\s*moduleName:\\s*github\\.com/maxlerebourg/crowdsec-bouncer-traefik-plugin\\s*version:\\s*(?<version>[^\\s]+)"
+      ]
+    }
+  ],
+  "kubernetes": {
+    "fileMatch": [
+      "\\.yaml$"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchCategories": [
+        "docker"
+      ],
+      "enabled": true
+    },
+    {
+      "matchDepTypes": [
+        "github-releases"
+      ],
+      "enabled": true,
+      "matchRepositories": "https://github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin"
+    }
+  ]
+}

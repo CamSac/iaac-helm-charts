@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kavita
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kavita
+  template:
+    metadata:
+      labels:
+        app: kavita
+    spec:
+      containers:
+        - name: kavita
+          image: jvmilazz0/kavita:0.8.3
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: manga
+              mountPath: /manga
+              readOnly: true
+            - name: config
+              mountPath: /kavita/config
+          env:
+            - name: TZ
+              value: America/New_York
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+      restartPolicy: Always
+      securityContext:
+        fsGroup: 1000
+      volumes:
+        - name: manga
+          hostPath:
+            path: /data/manga
+        - name: config
+          hostPath:
+            path: /data/kavita/config

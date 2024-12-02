@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cameran-lai
+spec:
+  secretName: argo-cert
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  commonName: "argo.cameran-lai.com"
+  dnsNames:
+    - "argo.cameran-lai.com"

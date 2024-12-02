@@ -1,0 +1,39 @@
+---
+argo-cd:
+
+  dex:
+    enabled: true
+  notifications:
+    enabled: false
+  applicationSet:
+    enabled: false
+
+  server:
+    extraArgs:
+      - server
+      - --auth-mode=sso
+      - --access-control-allow-origin=*
+
+  configs:
+
+    cm:
+      # admin.enabled: false
+      url: https://argo.cameran-lai.com
+      dex.config: |
+        connectors:
+        - config:
+            issuer: https://auth.cameran-lai.com/application/o/argo-cd/
+            clientID: $authentik-oidc:dex.authentik.clientID
+            clientSecret: $authentik-oidc:dex.authentik.clientSecret
+            insecureEnableGroups: true
+            scopes:
+              - openid
+              - profile
+              - email
+          name: authentik
+          type: oidc
+          id: authentik
+
+    rbac:
+      policy.csv: |
+        g, authentik Admins, role:admin

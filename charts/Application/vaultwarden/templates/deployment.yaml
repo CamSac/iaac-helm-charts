@@ -1,0 +1,44 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: vaultwarden
+  labels:
+    app: vaultwarden
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaultwarden
+  template:
+    metadata:
+      labels:
+        app: vaultwarden
+    spec:
+      containers:
+        - name: vaultwarden
+          image: vaultwarden/server:1.32.5
+          ports:
+            - containerPort: 80
+          securityContext:
+            runAsUser: 1002
+            runAsGroup: 1002
+          volumeMounts:
+            - name: vault-volume
+              mountPath: /data
+          env:
+            - name: TZ
+              value: America/New_York
+            - name: SIGNUPS_ALLOWED
+              value: "false"
+            - name: ADMIN_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: admin-token
+                  key: ADMIN_TOKEN
+      securityContext:
+        fsGroup: 1002
+      volumes:
+        - name: vault-volume
+          persistentVolumeClaim:
+            claimName: vault-volume

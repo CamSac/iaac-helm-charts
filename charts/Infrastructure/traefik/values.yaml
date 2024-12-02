@@ -1,0 +1,52 @@
+traefik:
+  globalArguments:
+    - "--global.sendanonymoususage=false"
+    - "--global.checknewversion=false"
+
+  additionalArguments:
+    - "--serversTransport.insecureSkipVerify=true"
+    - "--providers.kubernetescrd.allowCrossNamespace=true"
+
+  logs:
+    access:
+      enabled: true
+    general:
+      level: INFO
+
+  ports:
+    web:
+      redirectTo:
+        port: websecure
+        priority: 10
+      nodePort: 30080
+    websecure:
+      tls:
+        enabled: true
+      nodePort: 30443
+      middlewares:
+        - "traefik-bouncer@kubernetescrd"
+
+  ingressRoute:
+    dashboard:
+      enabled: false
+
+  rbac:
+    enabled: true
+
+  service:
+    enabled: true
+    type: LoadBalancer
+    spec:
+      loadBalancerIP: 192.168.68.49
+      externalTrafficPolicy: Local
+
+  volumes:
+    - name: crowdsec-bouncer-tls
+      mountPath: /etc/traefik/crowdsec-certs/
+      type: secret
+
+  experimental:
+    plugins:
+      bouncer:
+        moduleName: github.com/maxlerebourg/crowdsec-bouncer-traefik-plugin
+        version: v1.3.5

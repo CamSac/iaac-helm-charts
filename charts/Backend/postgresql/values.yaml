@@ -1,0 +1,29 @@
+postgresql:
+  postgresql:
+    v1:
+      primary:
+        fullname:
+  image:
+    tag: 16.4.0-debian-12-r14
+
+  auth:
+    existingSecret: postgres-password
+  primary:
+    persistence:
+      selector:
+        matchLabels:
+          type: data
+  backup:
+    enabled: true
+    cronjob:
+      command:
+        - "/bin/sh"
+        - "-c"
+        - "pg_dumpall --clean --if-exists --load-via-partition-root -h postgresql.database.svc.cluster.local --quote-all-identifiers --no-password --file=${PGDUMP_DIR}/pg_dumpall-$(date '+%Y-%m-%d-%H-%M').pgdump"
+      ttlSecondsAfterFinished: 60
+      schedule: "@weekly"
+      storage:
+        volumeClaimTemplates:
+          selector:
+            matchLabels:
+              type: backup

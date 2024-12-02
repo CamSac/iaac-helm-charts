@@ -1,0 +1,13 @@
+redis:
+  image:
+    registry: docker.io
+    repository: redis
+    tag: 7.4.1
+  architecture: standalone
+
+  auth:
+    existingSecret: redis-password
+
+  master:
+    persistence:
+      enabled: false

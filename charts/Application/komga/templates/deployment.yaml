@@ -1,0 +1,46 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: komga
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: komga
+  template:
+    metadata:
+      labels:
+        app: komga
+    spec:
+      containers:
+        - name: komga
+          image: gotson/komga:1.14.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 25600
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              readOnly: true
+            - name: config
+              mountPath: /config
+          env:
+            - name: TZ
+              value: America/New_York
+          envFrom:
+            - configMapRef:
+                name: authentik-oidc
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+      restartPolicy: Always
+      securityContext:
+          fsGroup: 1000
+      volumes:
+        - name: data
+          hostPath:
+            path: /data/manga
+        - name: config
+          hostPath:
+            path: /data/komga/config
